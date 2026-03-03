@@ -1,0 +1,16 @@
+{
+  "hideInactive": false,
+  "directory": "/home/linuxoed/Видео",
+  "filenamePattern": "recording_yyyyMMdd_HHmmss",
+  "frameRate": "60",
+  "audioCodec": "opus",
+  "videoCodec": "h264",
+  "quality": "high",
+  "colorRange": "full",
+  "showCursor": true,
+  "copyToClipboard": true,
+  "audioSource": "default_input",
+  "videoSource": "portal",
+  "resolution": "1920x1080",
+  "iconColor": "none"
+}

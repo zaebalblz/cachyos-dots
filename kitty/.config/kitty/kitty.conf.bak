@@ -1,0 +1,15 @@
+map ctrl+equal change_font_size all +1.0
+map ctrl+minus change_font_size all -1.0
+map ctrl+0 change_font_size all 0
+
+font_family      JetBrains Mono
+
+font_size 14.0
+
+window_padding_width 10
+
+background_opacity 0.75
+
+include current-theme.conf
+
+confirm_os_window_close 0

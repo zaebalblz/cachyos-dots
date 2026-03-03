@@ -1,0 +1,18 @@
+[config]
+
+[templates.cava]
+
+# User-defined templates
+# Add your custom templates below
+# Example:
+# [templates.myapp]
+# input_path = "~/.config/noctalia/templates/myapp.css"
+# output_path = "~/.config/myapp/theme.css"
+# post_hook = "myapp --reload-theme"
+
+# Remove this section and add your own templates
+#[templates.placeholder]
+#input_path = "/home/linuxoed/.config/quickshell/noctalia-shell/Assets/Templates/noctalia.json"
+#output_path = "/home/linuxoed/.cache/noctalia/placeholder.json"
+input_path = "~/.config/noctalia/templates/cava.ini"
+output_path = "~/.config/cava/themes/noctalia"
