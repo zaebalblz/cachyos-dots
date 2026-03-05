@@ -177,16 +177,6 @@
                     "id": "plugin:27ae3a:slowbongo"
                 },
                 {
-                    "defaultSettings": {
-                        "customColor": "none",
-                        "showConditionIcon": true,
-                        "showTempUnit": true,
-                        "showTempValue": true,
-                        "tooltipOption": "everything"
-                    },
-                    "id": "plugin:weather-indicator"
-                },
-                {
                     "clockColor": "none",
                     "customFont": "",
                     "formatHorizontal": "HH:mm",
@@ -256,7 +246,7 @@
                     "unreadBadgeColor": "primary"
                 },
                 {
-                    "applyToAllMonitors": false,
+                    "applyToAllMonitors": true,
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Brightness",
@@ -301,7 +291,7 @@
         ],
         "brightnessStep": 5,
         "enableDdcSupport": true,
-        "enforceMinimum": false
+        "enforceMinimum": true
     },
     "calendar": {
         "cards": [
