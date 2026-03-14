@@ -1,0 +1,2 @@
+#!/bin/sh
+LD_AUDIT="/home/linuxoed/.local/share/SLSsteam/library-inject.so:/home/linuxoed/.local/share/SLSsteam/SLSsteam.so" ""

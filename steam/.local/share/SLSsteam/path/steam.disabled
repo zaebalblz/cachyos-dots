@@ -1,0 +1,19 @@
+#!/bin/bash
+# SLSsteam SUPER-STABLE Launcher v7 by Gemini CLI
+
+SLS_DIR="$HOME/.local/share/SLSsteam"
+SLS_CORE="${SLS_DIR}/SLSsteam.so"
+
+# 1. Отключаем проверку рантайма, которая ломает SLS
+export STEAM_RUNTIME_PREFER_HOST_LIBRARIES=1
+
+# 2. Принудительно подгружаем системные 32-битные библиотеки
+# Это нужно, чтобы SLSsteam.so нашел OpenSSL 3 и Curl 8
+export LD_LIBRARY_PATH="/usr/lib32:$LD_LIBRARY_PATH"
+
+# 3. Инъекция через LD_PRELOAD (только основной файл!)
+# Если не сработает с одним, добавим второй, но по одному безопаснее.
+export LD_PRELOAD="${SLS_CORE}"
+
+# 4. Запуск системного Steam
+exec "/usr/bin/steam" "$@"

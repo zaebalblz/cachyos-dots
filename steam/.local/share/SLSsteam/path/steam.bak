@@ -1,0 +1,23 @@
+#!/bin/bash
+# SLSsteam + ACCELA wrapper v6 by Gemini CLI
+# Используем официальный механизм проброса библиотек Steam
+
+SLS_INJECT="/home/linuxoed/.local/share/SLSsteam/library-inject.so"
+SLS_CORE="/home/linuxoed/.local/share/SLSsteam/SLSsteam.so"
+
+# 1. Возвращаем оригинальный curl (на всякий случай)
+PINNED_CURL="$HOME/.local/share/Steam/ubuntu12_32/steam-runtime/pinned_libs_32/libcurl.so.4"
+if [ -e "${PINNED_CURL}.disabled" ]; then
+    mv "${PINNED_CURL}.disabled" "$PINNED_CURL" 2>/dev/null
+fi
+
+# 2. Настраиваем окружение
+export STEAM_RUNTIME_PREFER_HOST_LIBRARIES=1
+export LD_LIBRARY_PATH="/usr/lib32:$LD_LIBRARY_PATH"
+
+# 3. ВМЕСТО LD_AUDIT используем LD_PRELOAD, но прокидываем его через рантайм
+export LD_PRELOAD="${SLS_INJECT}:${SLS_CORE}"
+export STEAM_RUNTIME_LAUNCHER_WRAPPER="${SLS_INJECT}:${SLS_CORE}"
+
+# Запуск
+exec "/usr/bin/steam" "$@"

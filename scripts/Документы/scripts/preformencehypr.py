@@ -25,23 +25,11 @@ KITTY_CONF = CONFIG / "kitty/kitty.conf"
 KITTY_MINI_INC = CONFIG / "kitty/waybar-mini.conf" 
 KITTY_MINI_SRC = WAYBAR_MINI_DIR / "kitty-mini.conf"
 
-VSCODE_SETTINGS = CONFIG / "Code/User/settings.json"
-
 def run(cmd):
     subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
 
 def run_sync(cmd):
     return subprocess.run(cmd, capture_output=True, text=True)
-
-def update_vscode_theme(theme_name):
-    if not VSCODE_SETTINGS.exists(): return
-    try:
-        with open(VSCODE_SETTINGS, 'r') as f:
-            data = json.load(f)
-        data["workbench.colorTheme"] = theme_name
-        with open(VSCODE_SETTINGS, 'w') as f:
-            json.dump(data, f, indent=4)
-    except: pass
 
 def ensure_hypr_source():
     if not HYPR_CONF.exists(): return
@@ -78,8 +66,8 @@ animations {
 }
 """)
     
-    run(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "Adwaita-dark"])
-    run(["gsettings", "set", "org.gnome.desktop.interface", "icon-theme", "Adwaita"])
+   # run(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "Adwaita-dark"])
+   # run(["gsettings", "set", "org.gnome.desktop.interface", "icon-theme", "Adwaita"])
     
     if KITTY_CONF.exists():
         content = KITTY_CONF.read_text()
@@ -90,7 +78,6 @@ animations {
         if KITTY_MINI_SRC.exists(): shutil.copy(KITTY_MINI_SRC, KITTY_MINI_INC)
         run(["kitty", "@", "set-background-opacity", "--all", "1.0"])
 
-    update_vscode_theme("Default Dark Modern")
     run(["fish", "-c", "set -Ux fish_color_scheme Snowman"])
 
     run_sync(["/home/linuxoed/Документы/scripts/kill_shell.sh"])
@@ -111,7 +98,6 @@ def disable_ultra():
         if KITTY_MINI_INC.exists(): KITTY_MINI_INC.unlink()
         run(["kitty", "@", "set-background-opacity", "--all", "0.75"])
 
-    update_vscode_theme("Cyberpunk")
     run(["fish", "-c", "set -Ux fish_color_scheme Dracula"])
 
     run_sync(["killall", "waybar"])
