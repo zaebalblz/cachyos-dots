@@ -20,17 +20,27 @@ function dots
 
     if git status --porcelain | grep -q .
         echo (set_color yellow)"📝 Обнаружены изменения в конфигах. Синхронизирую с GitHub..."(set_color normal)
-        
-        # Определяем имя основной ветки (main или master)
+
+        # Определяем имя основной ветки
         set -l branch (git remote show origin | sed -n '/HEAD branch/s/.*: //p')
         if test -z "$branch"
             set branch "main"
         end
 
-        git pull --rebase origin $branch
+        # Сначала фиксируем локальные изменения
         git add .
         set -l current_time (date "+%Y-%m-%d %H:%M:%S")
         git commit -m "Auto-update: $current_time"
+
+        # Теперь подтягиваем изменения извне и пушим
+        echo (set_color cyan)"📥 Подтягиваю изменения из GitHub..."(set_color normal)
+        if not git pull --rebase origin $branch
+            echo (set_color red)"❌ Ошибка при pull. Попробуйте разрешить конфликты вручную."(set_color normal)
+            popd > /dev/null
+            return 1
+        end
+
+        echo (set_color cyan)"📤 Отправляю изменения в GitHub..."(set_color normal)
         git push origin $branch
         echo (set_color green)"🚀 GitHub успешно обновлен (ветка $branch)!"(set_color normal)
     else
