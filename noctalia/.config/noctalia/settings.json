@@ -606,8 +606,8 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
-        "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "grid",
+        "networkPanelView": "ethernet",
+        "wifiDetailsViewMode": "list",
         "wifiEnabled": true
     },
     "nightLight": {
@@ -741,7 +741,7 @@
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 58,
+    "settingsVersion": 59,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -849,12 +849,12 @@
             {
                 "colorScheme": "Ayu",
                 "darkMode": true,
-                "generationMethod": "faithful",
+                "generationMethod": "monochrome",
                 "paletteColors": [
-                    "#5999f2",
-                    "#5042f0",
-                    "#a842f0",
-                    "#fd4663"
+                    "#ffffff",
+                    "#c6c6c6",
+                    "#e2e2e2",
+                    "#ffb4ab"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/6233787.jpg",
                 "useWallpaperColors": true
@@ -865,8 +865,8 @@
                 "generationMethod": "faithful",
                 "paletteColors": [
                     "#52f9de",
-                    "#39b9f9",
-                    "#3959f9",
+                    "#39b9f8",
+                    "#3959f8",
                     "#fd4663"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/117497448_p0.jpg",
@@ -903,7 +903,14 @@
         "sortOrder": "date_desc",
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0,
-        "transitionType": "random",
+        "transitionType": [
+            "fade",
+            "disc",
+            "stripes",
+            "wipe",
+            "pixelate",
+            "honeycomb"
+        ],
         "useSolidColor": false,
         "useWallhaven": false,
         "viewMode": "single",

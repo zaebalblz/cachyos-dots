@@ -22,21 +22,31 @@ WAYBAR_CONFIG = WAYBAR_MINI_DIR / "config.jsonc"
 WAYBAR_STYLE = WAYBAR_MINI_DIR / "style.css"
 
 KITTY_CONF = CONFIG / "kitty/kitty.conf"
-KITTY_MINI_INC = CONFIG / "kitty/waybar-mini.conf" 
+KITTY_MINI_INC = CONFIG / "kitty/waybar-mini.conf"
 KITTY_MINI_SRC = WAYBAR_MINI_DIR / "kitty-mini.conf"
 
+
 def run(cmd):
-    subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
+    subprocess.Popen(
+        cmd,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        start_new_session=True,
+    )
+
 
 def run_sync(cmd):
     return subprocess.run(cmd, capture_output=True, text=True)
 
+
 def ensure_hypr_source():
-    if not HYPR_CONF.exists(): return
+    if not HYPR_CONF.exists():
+        return
     content = HYPR_CONF.read_text()
     if "performance-mode.conf" not in content:
         with open(HYPR_CONF, "a") as f:
             f.write(f"\n# Performance Mode Overrides\nsource = {PERF_CONF}\n")
+
 
 def enable_ultra():
     ensure_hypr_source()
@@ -48,6 +58,8 @@ $windowRounding = 0
 $workspaceGaps = 0
 $windowGapsIn = 0
 $windowGapsOut = 0
+$singleWindowGapsOut = 0
+$singleWindowGapsIn = 0
 $windowBorderSize = 2
 
 general {
@@ -64,45 +76,78 @@ decoration {
 animations {
     enabled = false
 }
+windowrulev3 = gapsin 0, class:.*
+windowrulev3 = gapsout 0, class:.*
 """)
-    
-   # run(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "Adwaita-dark"])
-   # run(["gsettings", "set", "org.gnome.desktop.interface", "icon-theme", "Adwaita"])
-    
+
+    # run(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "Adwaita-dark"])
+    # run(["gsettings", "set", "org.gnome.desktop.interface", "icon-theme", "Adwaita"])
+
     if KITTY_CONF.exists():
         content = KITTY_CONF.read_text()
         if "include waybar-mini.conf" not in content:
             content += "\ninclude waybar-mini.conf\n"
-        content = re.sub(r"background_opacity\s+[\d\.]+", "background_opacity 1.0", content)
+        content = re.sub(
+            r"background_opacity\s+[\d\.]+", "background_opacity 1.0", content
+        )
         KITTY_CONF.write_text(content)
-        if KITTY_MINI_SRC.exists(): shutil.copy(KITTY_MINI_SRC, KITTY_MINI_INC)
+        if KITTY_MINI_SRC.exists():
+            shutil.copy(KITTY_MINI_SRC, KITTY_MINI_INC)
         run(["kitty", "@", "set-background-opacity", "--all", "1.0"])
 
     run(["fish", "-c", "set -Ux fish_color_scheme Snowman"])
 
     run_sync(["/home/linuxoed/Документы/scripts/kill_shell.sh"])
     run(["waybar", "-c", str(WAYBAR_CONFIG), "-s", str(WAYBAR_STYLE)])
-    run_sync(["hyprctl", "batch", "reload; notify-send 'Performance' 'ULTRA Mode Enabled' -t 1000"])
+    run_sync(
+        [
+            "hyprctl",
+            "batch",
+            "reload; notify-send 'Performance' 'ULTRA Mode Enabled' -t 1000",
+        ]
+    )
+
 
 def disable_ultra():
-    PERF_CONF.write_text("# Performance Mode Disabled\n")
-    
-    run(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "adw-gtk3-dark"])
+    PERF_CONF.write_text("""# Performance Mode Disabled
+$singleWindowGapsOut = 10
+$singleWindowGapsIn = 5
+""")
+
+    run(
+        [
+            "gsettings",
+            "set",
+            "org.gnome.desktop.interface",
+            "gtk-theme",
+            "adw-gtk3-dark",
+        ]
+    )
     run(["gsettings", "set", "org.gnome.desktop.interface", "icon-theme", "kora-grey"])
 
     if KITTY_CONF.exists():
         content = KITTY_CONF.read_text()
         content = content.replace("include waybar-mini.conf", "")
-        content = re.sub(r"background_opacity\s+[\d\.]+", "background_opacity 0.75", content)
+        content = re.sub(
+            r"background_opacity\s+[\d\.]+", "background_opacity 0.75", content
+        )
         KITTY_CONF.write_text(content)
-        if KITTY_MINI_INC.exists(): KITTY_MINI_INC.unlink()
+        if KITTY_MINI_INC.exists():
+            KITTY_MINI_INC.unlink()
         run(["kitty", "@", "set-background-opacity", "--all", "0.75"])
 
     run(["fish", "-c", "set -Ux fish_color_scheme Dracula"])
 
     run_sync(["killall", "waybar"])
     run(["/home/linuxoed/Документы/scripts/restart_shell.sh"])
-    run_sync(["hyprctl", "batch", "reload; notify-send 'Performance' 'Normal Mode Restored' -t 1000"])
+    run_sync(
+        [
+            "hyprctl",
+            "batch",
+            "reload; notify-send 'Performance' 'Normal Mode Restored' -t 1000",
+        ]
+    )
+
 
 if __name__ == "__main__":
     if not STATE_FILE.exists():
@@ -110,4 +155,5 @@ if __name__ == "__main__":
         STATE_FILE.write_text("ultra")
     else:
         disable_ultra()
-        if STATE_FILE.exists(): STATE_FILE.unlink()
+        if STATE_FILE.exists():
+            STATE_FILE.unlink()

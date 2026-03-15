@@ -1,17 +1,22 @@
 #!/bin/bash
-# SLSsteam + ACCELA Final Injector v8
+# SLSsteam + ACCELA Ultimate Launcher v10
 
 SLS_DIR="$HOME/.local/share/SLSsteam"
 SLS_INJECT="${SLS_DIR}/library-inject.so"
 SLS_CORE="${SLS_DIR}/SLSsteam.so"
 
+# Если Steam уже запущен (ищем по имени процесса)
+if pgrep -x "steam" > /dev/null; then
+    # Просто даем команду открыть главное окно
+    /usr/bin/steam steam://open/main &
+    exit 0
+fi
+
 # Настройка зависимостей для CachyOS
 export LD_LIBRARY_PATH="${SLS_DIR}:/usr/lib32:$LD_LIBRARY_PATH"
 export STEAM_RUNTIME_PREFER_HOST_LIBRARIES=1
 
-# Использование LD_AUDIT для МАКСИМАЛЬНОЙ инъекции
-# Чтобы не было Segfault в 64-битных процессах, мы используем LD_AUDIT 
-# только при вызове самого Steam
+# Использование LD_AUDIT для SLS при первом запуске
 export LD_AUDIT="${SLS_INJECT}:${SLS_CORE}"
 
 # Запуск
