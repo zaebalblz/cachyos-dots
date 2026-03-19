@@ -32,7 +32,7 @@
         ],
         "preferredPlayer": "",
         "spectrumFrameRate": 30,
-        "visualizerType": "mirrored",
+        "visualizerType": "wave",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
         "volumeOverdrive": false,
@@ -253,25 +253,6 @@
                     "iconColor": "none",
                     "id": "Brightness",
                     "textColor": "none"
-                },
-                {
-                    "defaultSettings": {
-                        "audioCodec": "opus",
-                        "audioSource": "default_output",
-                        "colorRange": "limited",
-                        "copyToClipboard": false,
-                        "directory": "",
-                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
-                        "frameRate": "60",
-                        "hideInactive": false,
-                        "iconColor": "none",
-                        "quality": "very_high",
-                        "resolution": "original",
-                        "showCursor": true,
-                        "videoCodec": "h264",
-                        "videoSource": "portal"
-                    },
-                    "id": "plugin:screen-recorder"
                 },
                 {
                     "displayMode": "onhover",
@@ -560,6 +541,7 @@
         "telemetryEnabled": true
     },
     "hooks": {
+        "colorGeneration": "",
         "darkModeChange": "",
         "enabled": false,
         "performanceModeDisabled": "",
@@ -606,7 +588,7 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
-        "networkPanelView": "ethernet",
+        "networkPanelView": "wifi",
         "wifiDetailsViewMode": "list",
         "wifiEnabled": true
     },
@@ -849,12 +831,12 @@
             {
                 "colorScheme": "Ayu",
                 "darkMode": true,
-                "generationMethod": "monochrome",
+                "generationMethod": "faithful",
                 "paletteColors": [
-                    "#ffffff",
-                    "#c6c6c6",
-                    "#e2e2e2",
-                    "#ffb4ab"
+                    "#5999f2",
+                    "#5042f0",
+                    "#a842f0",
+                    "#fd4663"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/6233787.jpg",
                 "useWallpaperColors": true
@@ -865,8 +847,8 @@
                 "generationMethod": "faithful",
                 "paletteColors": [
                     "#52f9de",
-                    "#39b9f8",
-                    "#3959f8",
+                    "#39b9f9",
+                    "#3959f9",
                     "#fd4663"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/117497448_p0.jpg",

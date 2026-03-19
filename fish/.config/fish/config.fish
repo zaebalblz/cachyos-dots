@@ -70,3 +70,8 @@ end
    alias rocky="docker start -ai rocky"
    alias alma="docker start -ai alma"
    alias kali="docker start -ai kali"
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/linuxoed/.lmstudio/bin
+# End of LM Studio CLI section
+
