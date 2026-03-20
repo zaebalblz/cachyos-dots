@@ -32,7 +32,7 @@
         ],
         "preferredPlayer": "",
         "spectrumFrameRate": 30,
-        "visualizerType": "wave",
+        "visualizerType": "mirrored",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
         "volumeOverdrive": false,
