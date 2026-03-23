@@ -32,6 +32,7 @@
         ],
         "preferredPlayer": "",
         "spectrumFrameRate": 30,
+        "spectrumMirrored": true,
         "visualizerType": "mirrored",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
@@ -49,7 +50,6 @@
         "density": "comfortable",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
-        "floating": false,
         "fontScale": 1.07,
         "frameRadius": 19,
         "frameThickness": 12,
@@ -461,8 +461,10 @@
         "indicatorColor": "primary",
         "indicatorOpacity": 0.6,
         "indicatorThickness": 3,
+        "launcherIcon": "",
         "launcherIconColor": "none",
         "launcherPosition": "end",
+        "launcherUseDistroLogo": false,
         "monitors": [
             "DP-3"
         ],
@@ -588,9 +590,8 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
-        "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "list",
-        "wifiEnabled": true
+        "networkPanelView": "ethernet",
+        "wifiDetailsViewMode": "list"
     },
     "nightLight": {
         "autoSchedule": false,
@@ -654,7 +655,8 @@
         "overlayLayer": true
     },
     "plugins": {
-        "autoUpdate": true
+        "autoUpdate": true,
+        "notifyUpdates": true
     },
     "sessionMenu": {
         "countdownDuration": 10000,
@@ -833,10 +835,10 @@
                 "darkMode": true,
                 "generationMethod": "faithful",
                 "paletteColors": [
-                    "#5999f2",
-                    "#5042f0",
-                    "#a842f0",
-                    "#fd4663"
+                    "#ffffff",
+                    "#c6c6c6",
+                    "#e2e2e2",
+                    "#ffb4ab"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/6233787.jpg",
                 "useWallpaperColors": true
@@ -846,10 +848,10 @@
                 "darkMode": true,
                 "generationMethod": "faithful",
                 "paletteColors": [
-                    "#52f9de",
-                    "#39b9f9",
-                    "#3959f9",
-                    "#fd4663"
+                    "#ffffff",
+                    "#c6c6c6",
+                    "#e2e2e2",
+                    "#ffb4ab"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/117497448_p0.jpg",
                 "useWallpaperColors": true
@@ -872,12 +874,22 @@
         "fillMode": "crop",
         "hideWallpaperFilenames": true,
         "monitorDirectories": [
+            {
+                "directory": "/home/linuxoed/Pictures/Wallpapers",
+                "name": "eDP-1",
+                "wallpaper": ""
+            },
+            {
+                "directory": "/home/linuxoed/Pictures/Wallpapers",
+                "name": "DP-3",
+                "wallpaper": ""
+            }
         ],
         "overviewBlur": 0.4,
         "overviewEnabled": false,
         "overviewTint": 0.6,
         "panelPosition": "top_center",
-        "randomIntervalSec": 300,
+        "randomIntervalSec": 180,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": true,
         "skipStartupTransition": false,
@@ -893,6 +905,7 @@
             "pixelate",
             "honeycomb"
         ],
+        "useOriginalImages": false,
         "useSolidColor": false,
         "useWallhaven": false,
         "viewMode": "single",
