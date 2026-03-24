@@ -270,6 +270,7 @@ prepare_target_dirs() {
   mkdir -p -- "${TARGET_DIR}/Документы/appimage"
   mkdir -p -- "${TARGET_DIR}/.local/bin"
   mkdir -p -- "${TARGET_DIR}/.local/share"
+  mkdir -p -- "${TARGET_DIR}/.local/share/SLSsteam"
 }
 
 run_pacman_install() {
@@ -413,6 +414,55 @@ apply_stow_packages() {
   fi
 }
 
+validate_stow_package_sources() {
+  local pkg
+  local package_dir=""
+  local source_path=""
+  local target=""
+  local invalid_links=()
+
+  for pkg in "${STOW_PACKAGES_TO_APPLY[@]}"; do
+    package_dir="${REPO_DIR}/${pkg}"
+    while IFS= read -r -d '' source_path; do
+      target="$(readlink "${source_path}")"
+      case "${target}" in
+        /*)
+          invalid_links+=("${source_path#${REPO_DIR}/} -> ${target}")
+          ;;
+      esac
+    done < <(find "${package_dir}" -type l -print0)
+  done
+
+  if [[ "${#invalid_links[@]}" -gt 0 ]]; then
+    printf '[install] Error: found absolute symlinks in stow packages:\n' >&2
+    printf '  %s\n' "${invalid_links[@]}" >&2
+    die "Replace them with regular files or post-install logic before running stow."
+  fi
+}
+
+stow_package_selected() {
+  local wanted="$1"
+  local pkg
+
+  for pkg in "${STOW_PACKAGES_TO_APPLY[@]}"; do
+    [[ "${pkg}" == "${wanted}" ]] && return 0
+  done
+
+  return 1
+}
+
+apply_post_install_fixes() {
+  local steam_libcurl_path="${TARGET_DIR}/.local/share/SLSsteam/libcurl.so.4"
+
+  if stow_package_selected steam; then
+    if [[ -e /usr/lib32/libcurl.so.4 ]]; then
+      ln -sfn /usr/lib32/libcurl.so.4 "${steam_libcurl_path}"
+    else
+      warn "steam package selected, but /usr/lib32/libcurl.so.4 was not found; SLSsteam may need manual libcurl setup."
+    fi
+  fi
+}
+
 parse_args() {
   STOW_PACKAGES=()
 
@@ -495,7 +545,9 @@ main() {
   prepare_target_dirs
 
   if [[ "${APPLY_CONFIGS}" -eq 1 ]]; then
+    validate_stow_package_sources
     apply_stow_packages
+    apply_post_install_fixes
   fi
 
   warn "AppImage files are not downloaded automatically: ~/Документы/appimage/YouTube-Music.AppImage and ~/Документы/appimage/osu.AppImage"
