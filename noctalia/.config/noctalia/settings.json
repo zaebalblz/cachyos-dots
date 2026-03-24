@@ -188,6 +188,13 @@
                     "visualizerType": "linear"
                 },
                 {
+                    "defaultSettings": {
+                        "customColor": "none",
+                        "showConditionIcon": true,
+                        "showTempUnit": true,
+                        "showTempValue": true,
+                        "tooltipOption": "everything"
+                    },
                     "id": "plugin:weather-indicator"
                 },
                 {
@@ -306,7 +313,7 @@
     },
     "colorSchemes": {
         "darkMode": true,
-        "generationMethod": "faithful",
+        "generationMethod": "monochrome",
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
@@ -828,10 +835,10 @@
                 "darkMode": true,
                 "generationMethod": "faithful",
                 "paletteColors": [
-                    "#ffffff",
-                    "#c6c6c6",
-                    "#e2e2e2",
-                    "#ffb4ab"
+                    "#5999f2",
+                    "#5042f0",
+                    "#a842f0",
+                    "#fd4663"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/6233787.jpg",
                 "useWallpaperColors": true
@@ -841,10 +848,10 @@
                 "darkMode": true,
                 "generationMethod": "faithful",
                 "paletteColors": [
-                    "#ffffff",
-                    "#c6c6c6",
-                    "#e2e2e2",
-                    "#ffb4ab"
+                    "#52f9de",
+                    "#39b9f9",
+                    "#3959f9",
+                    "#fd4663"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/117497448_p0.jpg",
                 "useWallpaperColors": true
