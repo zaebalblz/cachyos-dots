@@ -27,15 +27,15 @@ Stow-репозиторий с моими конфигами для CachyOS/Hypr
 ```bash
 git clone https://github.com/zaebalblz/cachyos-dots.git
 cd cachyos-dots
-./bootstrap.sh
+./install.sh
 ```
 
-`bootstrap.sh`:
+`install.sh` по умолчанию:
 
 - ставит системные пакеты через `pacman`
 - при наличии `yay` или `paru` ставит AUR/внешние пакеты
 - создаёт нужные пользовательские директории
-- затем запускает `install.sh --all`
+- затем применяет все stow-пакеты, включая `Wallpapers` и `steam`
 
 Если нужны только конфиги без установки пакетов, тогда нужен `gnu stow`.
 
@@ -50,16 +50,16 @@ sudo pacman -S stow
 ```bash
 git clone https://github.com/zaebalblz/cachyos-dots.git
 cd cachyos-dots
-./install.sh
+./install.sh --configs-only
 ```
 
-Установка вместе с обоями и Steam-файлами:
+Минимальный профиль без extra desktop/gaming-приложений и без опциональных stow-пакетов:
 
 ```bash
-./install.sh --all
+./install.sh --minimal
 ```
 
-Установка только выбранных пакетов:
+Установка только выбранных stow-пакетов:
 
 ```bash
 ./install.sh hypr kitty fish
@@ -67,35 +67,36 @@ cd cachyos-dots
 
 ## Что делает `install.sh`
 
-- запускает `stow` из корня репозитория
-- по умолчанию применяет базовые stow-пакеты: `btop fastfetch fish foot hypr kitty noctalia scripts waybar`
-- умеет ставить опциональные пакеты: `Wallpapers` и `steam`
+- по умолчанию ставит системные зависимости для этого окружения через `pacman`
+- при наличии `yay`/`paru` добирает AUR/helper-пакеты вроде `bibata-cursor-theme-bin`, `portproton`, `pipes.sh`
+- затем запускает `stow` из корня репозитория
+- по умолчанию применяет все stow-пакеты: `btop fastfetch fish foot hypr kitty noctalia scripts waybar Wallpapers steam`
 - перед установкой переносит конфликтующие файлы в `~/.dotfiles-backup/<timestamp>`
 - игнорирует runtime-артефакты вроде `__pycache__`, `*.pyc`, `*.swp`, `*.bak`, `fish_variables`
+- поддерживает режимы `--minimal`, `--packages-only`, `--configs-only`, `--no-aur`, `--target DIR`
 
 ## Что делает `bootstrap.sh`
 
-- ставит базовый стек для этого окружения: Hyprland, kitty, fish, fastfetch, btop, waybar, Noctalia/quickshell, clipboard/media/system utilities
-- по умолчанию ставит и дополнительные desktop/gaming-программы из моих биндов: `telegram-desktop`, `discord`, `steam`, `prismlauncher`, `obs-studio`, `godot`, `lutris-git`, `nemo`
-- при наличии `yay`/`paru` добирает пакеты, которых нет в sync DB, например `portproton` и `pipes.sh`
-- после установки пакетов применяет все stow-пакеты через `install.sh --all`
+- это thin-wrapper для совместимости
+- просто проксирует аргументы в `./install.sh`
+- нужен только если старые заметки или команды всё ещё ссылаются на `bootstrap.sh`
 
 Минимальный вариант без лишних приложений:
 
 ```bash
-./bootstrap.sh --minimal
+./install.sh --minimal
 ```
 
 Только пакеты, без применения конфигов:
 
 ```bash
-./bootstrap.sh --packages-only
+./install.sh --packages-only
 ```
 
 ## Ограничения
 
 - Это не универсальные dotfiles для любого дистрибутива. Основная среда здесь: CachyOS, Hyprland, kitty, waybar, Noctalia, quickshell.
 - Некоторые сценарии и бинды завязаны на `~/Документы/scripts`, потому что такой путь используется в моём рабочем окружении.
-- `install.sh` создаёт симлинки, а системные зависимости ставит уже `bootstrap.sh`.
-- `bootstrap.sh` ориентирован на Arch/CachyOS и не рассчитан на Debian/Ubuntu/Fedora.
+- `install.sh` совмещает установку пакетов и применение Stow в одном сценарии.
+- `install.sh` ориентирован на Arch/CachyOS и не рассчитан на Debian/Ubuntu/Fedora.
 - AppImage-файлы вроде YouTube Music и osu не скачиваются автоматически: для них в биндах используются локальные пути в `~/Документы/appimage/`.
