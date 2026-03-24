@@ -4,11 +4,13 @@ import sys
 import time
 import subprocess
 import pty
+from pathlib import Path
 
-# Пути
+SCRIPT_PATH = Path(__file__).resolve()
+REPO_ROOT = SCRIPT_PATH.parents[3]
 BASE_DIR = os.path.expanduser("~/.config/fastfetch/bad-apple-data/frames-ascii")
 if not os.path.exists(BASE_DIR):
-    BASE_DIR = os.path.expanduser("~/.dotfiles/fastfetch/.config/fastfetch/bad-apple-data/frames-ascii")
+    BASE_DIR = str(REPO_ROOT / "fastfetch/.config/fastfetch/bad-apple-data/frames-ascii")
 
 ORIGINAL_CONFIG = os.path.expanduser("~/.config/fastfetch/config.jsonc")
 TEMP_CONFIG = os.path.expanduser("~/.config/fastfetch/temp_no_logo.jsonc")

@@ -14,9 +14,18 @@ function dots
         git remote set-url origin https://github.com/zaebalblz/cachyos-dots.git
     end
 
+    set -l packages
+    for entry in *
+        if test -d "$entry"
+            set packages $packages "$entry"
+        end
+    end
+
     echo (set_color cyan)"📦 Обновляю символические ссылки через Stow (~/.dotfiles)..."(set_color normal)
-    # Используем --restow для обновления существующих ссылок
-    stow -t ~ --ignore=".git|README.md" -R *
+    # Используем --restow только по каталогам-пакетам, чтобы файлы в корне репо не ломали stow.
+    stow -t ~ \
+        --ignore='(__pycache__|fish_variables|.*\\.pyc|.*\\.pyo|.*\\.swp|.*\\.bak)$' \
+        -R $packages
 
     if git status --porcelain | grep -q .
         echo (set_color yellow)"📝 Обнаружены изменения в конфигах. Синхронизирую с GitHub..."(set_color normal)

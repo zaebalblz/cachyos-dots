@@ -10,6 +10,7 @@ from pathlib import Path
 HOME = Path.home()
 CONFIG = HOME / ".config"
 CACHE = HOME / ".cache"
+SCRIPT_DIR = Path(__file__).resolve().parent
 STATE_FILE = CACHE / "hypr_performance_state.json"
 
 HYPR_DIR = CONFIG / "hypr"
@@ -24,6 +25,8 @@ WAYBAR_STYLE = WAYBAR_MINI_DIR / "style.css"
 KITTY_CONF = CONFIG / "kitty/kitty.conf"
 KITTY_MINI_INC = CONFIG / "kitty/waybar-mini.conf"
 KITTY_MINI_SRC = WAYBAR_MINI_DIR / "kitty-mini.conf"
+KILL_SHELL = SCRIPT_DIR / "kill_shell.sh"
+RESTART_SHELL = SCRIPT_DIR / "restart_shell.sh"
 
 
 def run(cmd):
@@ -97,7 +100,7 @@ windowrulev3 = gapsout 0, class:.*
 
     run(["fish", "-c", "set -Ux fish_color_scheme Snowman"])
 
-    run_sync(["/home/linuxoed/Документы/scripts/kill_shell.sh"])
+    run_sync([str(KILL_SHELL)])
     run(["waybar", "-c", str(WAYBAR_CONFIG), "-s", str(WAYBAR_STYLE)])
     run_sync(
         [
@@ -139,7 +142,7 @@ $singleWindowGapsIn = 5
     run(["fish", "-c", "set -Ux fish_color_scheme Dracula"])
 
     run_sync(["killall", "waybar"])
-    run(["/home/linuxoed/Документы/scripts/restart_shell.sh"])
+    run([str(RESTART_SHELL)])
     run_sync(
         [
             "hyprctl",
