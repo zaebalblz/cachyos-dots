@@ -1,6 +1,6 @@
 function dotsync
     set REPO_DIR "$HOME/Документы/github-rep/my-dots"
-    set CONFIGS fastfetch fish hypr kitty noctalia foot uwsm quickshell
+    set CONFIGS fastfetch fish hypr kitty noctalia foot uwsm quickshell waybar waybar-mini
     set WALLPAPERS_SRC "$HOME/Pictures/Wallpapers"
 
     echo "🚀 Начинаю синхронизацию конфигов и обоев..."

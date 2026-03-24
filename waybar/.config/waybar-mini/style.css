@@ -1,0 +1,52 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrains Mono, FontAwesome, sans-serif;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(20, 20, 20, 0.8);
+    color: #ffffff;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    background: transparent;
+    color: #aaaaaa;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    background: #555555;
+}
+
+#workspaces button:hover {
+    background: #555555;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#clock,
+#cpu,
+#temperature,
+#memory,
+#tray,
+#pulseaudio,
+#disk,
+#battery,
+#hyprland\/language {
+    padding: 0 10px;
+    margin: 0 4px;
+}
+
+#custom-separator {
+    padding: 0 5px;
+    margin: 0 4px;
+    color: #555555;
+}
+
+#battery.critical {
+    color: #ff0000;
+}
