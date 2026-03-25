@@ -894,7 +894,7 @@
         "showHiddenFiles": true,
         "skipStartupTransition": false,
         "solidColor": "#1a00ff",
-        "sortOrder": "date_desc",
+        "sortOrder": "name_desc",
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0,
         "transitionType": [
