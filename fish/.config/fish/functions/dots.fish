@@ -15,17 +15,39 @@ function dots
     end
 
     set -l packages
+    set -l steam_package
     for entry in *
         if test -d "$entry"
-            set packages $packages "$entry"
+            switch "$entry"
+                case steam
+                    set steam_package "$entry"
+                case '*'
+                    set packages $packages "$entry"
+            end
         end
     end
 
     echo (set_color cyan)"📦 Обновляю символические ссылки через Stow (~/.dotfiles)..."(set_color normal)
-    # Используем --restow только по каталогам-пакетам, чтобы файлы в корне репо не ломали stow.
-    stow -t ~ \
-        --ignore='(__pycache__|fish_variables|.*\\.pyc|.*\\.pyo|.*\\.swp|.*\\.bak)$' \
-        -R $packages
+    if test (count $packages) -gt 0
+        if not stow -t ~ \
+            --ignore='(__pycache__|fish_variables|.*\\.pyc|.*\\.pyo|.*\\.swp|.*\\.bak)$' \
+            -R $packages
+            echo (set_color red)"❌ Ошибка при применении Stow-пакетов."(set_color normal)
+            popd > /dev/null
+            return 1
+        end
+    end
+
+    if test -n "$steam_package"
+        if not stow -t ~ \
+            --ignore='(__pycache__|fish_variables|.*\\.pyc|.*\\.pyo|.*\\.swp|.*\\.bak)$' \
+            --adopt \
+            -R $steam_package
+            echo (set_color red)"❌ Ошибка при применении Stow-пакета steam."(set_color normal)
+            popd > /dev/null
+            return 1
+        end
+    end
 
     if git status --porcelain | grep -q .
         echo (set_color yellow)"📝 Обнаружены изменения в конфигах. Синхронизирую с GitHub..."(set_color normal)
