@@ -1,0 +1,39 @@
+Script started on 2026-03-26 18:46:17+02:00 [TERM="xterm-kitty" TTY="/dev/pts/4" COLUMNS="167" LINES="39"]
+[?u[>0q]11;?\[?1049hP+q696e646e\P+q71756572792d6f732d6e616d65\[?1049l[0c]7;file://Precision-7740/home/linuxoed/.dotfiles[K]133;A\]0;~/.dotfiles - fish[m]11;?\[6n[0c[?2004h[?2031h[=5u[K]133;A;click_events=1\[34m~/.dotfiles [90mmain[90m*
+[35m❯[m ]133;B[K[2Cl[3Cl[3C[90ms[m[3Cs[4C[4C[?2004l[?2031l[=0u[4C
+[m]133;C;cmdline_url=ls]0;~/.dotfiles: ls - ls[m[34m [1mbtop[0m
+[34m [1mfastfetch[0m
+[34m [1mfish[0m
+[34m [1mfoot[0m
+[34m [1mhypr[0m
+[34m [1mkitty[0m
+[34m [1mnoctalia[0m
+[34m [1mscripts[0m
+[34m [1msteam[0m
+[34m [1mWallpapers[0m
+[34m [1mwaybar[0m
+[32m [1mbootstrap.sh[0m
+[32m [1minstall.sh[0m
+[33m󰂺 [1;4mREADME.md[0m
+󰡯 typescript
+]133;D;0[?25h[2m⏎[m                                                                                                                                                                      ⏎ [K
+]133;A\]7;file://Precision-7740/home/linuxoed/.dotfiles]0;~/.dotfiles - fish[m]11;?\[6n[0c[?2004h[?2031h[=5u[K]133;A;click_events=1[34m~/.dotfiles [90mmain[90m*
+[35m❯[m ]133;B[K[2Cc[3C[90md ~/godot/pixel-3d-game/[m[3C[91mc[90md ~/godot/pixel-3d-game/[m[3C[91md[90m ~/godot/pixel-3d-game/[m[4C[2Dcd[90m ~/godot/pixel-3d-game/[m[4C [90m~/godot/pixel-3d-game/[m[5C [90m~/godot/pixel-3d-game/[m[5Cs[K[6C[36;4ms[m[6C[90mcripts/Документы/scripts/[m[6C[36;4mc[90;24mripts/Документы/scripts/[m[7C[36;4mr[90;24mipts/Документы/scripts/[m[8C[6Dcd scripts/Документы/scripts/[31C[29Dcd [36;4mscripts/Документы/scripts/[m[31C[90m__pycache__/[m[31C[?2004l[?2031l[=0u[K[31C
+[m]133;C;cmdline_url=cd%20scripts/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B/scripts/]0;~/.dotfiles: cd scripts/Документы/scripts/ - cd[m]7;file://Precision-7740/home/linuxoed/.dotfiles/scripts/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B/scripts]133;D;0[?25h[2m⏎[m                                                                                                                                                                      ⏎ [K
+]133;A\]7;file://Precision-7740/home/linuxoed/.dotfiles/scripts/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B/scripts]0;~/.dotfiles/scripts/Документы/scripts - fish[m]11;?\[6n[0c[?2004h[?2031h[=5u[K]133;A;click_events=1[34m~/.dotfiles/scripts/Документы/scripts [90mmain[90m*
+[35m❯[m ]133;B[K[2Cl[3C[90ms[m[3Cl[90ms[m[3Cs[4C[4C[?2004l[?2031l[=0u[4C
+[m]133;C;cmdline_url=ls]0;~/.dotfiles/scripts/Документы/scripts: ls - ls[m[34m [1m__pycache__[0m
+[32m [1mdashboard.sh[0m
+[32m [1mdoom_terminal.sh[0m
+[32m [1mfastfetch-bad-apple.py[0m
+[32m [1mkill_shell.sh[0m
+[32m [1mmonitor-script.py[0m
+[32m [1mpreformencehypr.py[0m
+[32m [1mrestart_shell.sh[0m
+[32m [1msim_click.sh[0m
+]133;D;0[?25h[2m⏎[m                                                                                                                                                                      ⏎ [K
+]133;A\]7;file://Precision-7740/home/linuxoed/.dotfiles/scripts/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B/scripts]0;~/.dotfiles/scripts/Документы/scripts - fish[m]11;?\[6n[0c[?2004h[?2031h[=5u[K]133;A;click_events=1[34m~/.dotfiles/scripts/Документы/scripts [90mmain[90m*
+[35m❯[m ]133;B[K[2C[?2004l[?2031l[=0u]0;~/.dotfiles/scripts/Документы/scripts - fish[m[?2004h[?2031h[=5u[A[K]133;A;click_events=1[34m~/.dotfiles/scripts/Документы/scripts [90mmain[90m*
+[35m❯[m ]133;B[J[2C[?2004l[?2031l[=0u]0;~/.dotfiles/scripts/Документы/scripts - fish[m[?2004h[?2031h[=5u[A[K]133;A;click_events=1[34m~/.dotfiles/scripts/Документы/scripts [90mmain[90m*
+[35m❯[m ]133;B[J[2C
+Script done on 2026-03-26 19:02:32+02:00 [COMMAND_EXIT_CODE="0"]
