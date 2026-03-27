@@ -834,12 +834,12 @@
             {
                 "colorScheme": "Ayu",
                 "darkMode": true,
-                "generationMethod": "monochrome",
+                "generationMethod": "faithful",
                 "paletteColors": [
-                    "#ffffff",
-                    "#c6c6c6",
-                    "#e2e2e2",
-                    "#ffb4ab"
+                    "#5999f2",
+                    "#5042f0",
+                    "#a842f0",
+                    "#fd4663"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/6233787.jpg",
                 "useWallpaperColors": true

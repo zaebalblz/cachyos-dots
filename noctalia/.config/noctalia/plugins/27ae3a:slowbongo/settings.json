@@ -28,7 +28,10 @@
     "/dev/input/event16",
     "/dev/input/event21",
     "/dev/input/event25",
-    "/dev/input/event23"
+    "/dev/input/event23",
+    "/dev/input/event27",
+    "/dev/input/event28",
+    "/dev/input/event26"
   ],
   "catColor": "default",
   "catSize": 0.72,
