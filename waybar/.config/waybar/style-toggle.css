@@ -1,0 +1,119 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrains Mono", "Font Awesome 6 Free", FontAwesome, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+    transition: none;
+}
+
+window#waybar {
+    background: rgba(7, 7, 8, 0.9);
+    color: #f1f1f1;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces,
+#clock,
+#network,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#battery,
+#hyprland-language,
+#hyprland\/language,
+#language,
+#tray {
+    padding: 0 10px;
+    margin: 0 2px;
+    min-height: 0;
+}
+
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    min-width: 20px;
+    padding: 0 6px;
+    margin: 0 2px;
+    color: #8f8f95;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+}
+
+#workspaces button.urgent {
+    color: #ff6b81;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+#clock {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#network,
+#pulseaudio,
+#cpu,
+#memory,
+#temperature,
+#battery {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    color: #dddddf;
+}
+
+#network.disconnected,
+#network.disabled,
+#pulseaudio.muted,
+#battery.critical,
+#temperature.critical {
+    color: #ff7a90;
+}
+
+#battery.warning {
+    color: #f3cd72;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #d7f59a;
+}
+
+#hyprland-language,
+#hyprland\/language,
+#language {
+    color: #d3d3d8;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#tray {
+    padding-right: 4px;
+}
+
+tooltip {
+    background: rgba(10, 10, 11, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: #f2f2f2;
+}

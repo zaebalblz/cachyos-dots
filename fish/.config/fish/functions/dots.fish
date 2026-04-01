@@ -28,6 +28,33 @@ function dots
     end
 
     echo (set_color cyan)"📦 Обновляю символические ссылки через Stow (~/.dotfiles)..."(set_color normal)
+    set -l stow_packages $packages
+    if test -n "$steam_package"
+        set stow_packages $stow_packages "$steam_package"
+    end
+
+    # GNU Stow не считает абсолютные симлинки "своими", даже если они уже
+    # указывают на нужный файл внутри ~/.dotfiles. Удаляем только такие
+    # безопасные совпадения, чтобы stow создал корректные относительные ссылки.
+    for entry in $stow_packages
+        find "$entry" -mindepth 1 ! -type d -print0 | while read -lz source_path
+            set -l relpath (string split -m 1 / -- "$source_path")[2]
+            set -l target_path "$HOME/$relpath"
+
+            if test -L "$target_path"
+                set -l current_link (readlink "$target_path")
+                if string match -qr '^/' -- "$current_link"
+                    set -l current_target (readlink -f -- "$target_path" 2>/dev/null)
+                    set -l desired_target (readlink -f -- "$source_path" 2>/dev/null)
+
+                    if test -n "$current_target"; and test -n "$desired_target"; and test "$current_target" = "$desired_target"
+                        rm "$target_path"
+                    end
+                end
+            end
+        end
+    end
+
     if test (count $packages) -gt 0
         if not stow -t ~ \
             --ignore='(__pycache__|fish_variables|.*\\.pyc|.*\\.pyo|.*\\.swp|.*\\.bak)$' \

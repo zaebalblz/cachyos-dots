@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-import json
 import subprocess
-import os
 import shutil
 import re
 from pathlib import Path
@@ -17,6 +15,7 @@ HYPR_DIR = CONFIG / "hypr"
 HYPR_CONF = HYPR_DIR / "hyprland.conf"
 PERF_CONF = HYPR_DIR / "performance-mode.conf"
 ACTIVE_COLORS = HYPR_DIR / "active-colors.conf"
+VARIABLES_CONF = HYPR_DIR / "variables.conf"
 
 WAYBAR_MINI_DIR = CONFIG / "waybar-mini"
 WAYBAR_CONFIG = WAYBAR_MINI_DIR / "config.jsonc"
@@ -40,6 +39,51 @@ def run(cmd):
 
 def run_sync(cmd):
     return subprocess.run(cmd, capture_output=True, text=True)
+
+
+def read_hypr_variable(name, fallback):
+    if not VARIABLES_CONF.exists():
+        return fallback
+
+    pattern = re.compile(rf"^\${re.escape(name)}\s*=\s*(.+?)\s*(?:#.*)?$")
+    for line in VARIABLES_CONF.read_text().splitlines():
+        match = pattern.match(line.strip())
+        if match:
+            return match.group(1).strip()
+
+    return fallback
+
+
+def hypr_keyword(option, value):
+    run_sync(["hyprctl", "keyword", option, str(value)])
+
+
+def apply_hypr_runtime_mode(enable):
+    if enable:
+        values = {
+            "general:gaps_in": 0,
+            "general:gaps_out": 0,
+            "general:gaps_workspaces": 0,
+            "general:border_size": 2,
+            "decoration:rounding": 0,
+            "decoration:shadow:enabled": "false",
+            "decoration:blur:enabled": "false",
+            "animations:enabled": "false",
+        }
+    else:
+        values = {
+            "general:gaps_in": read_hypr_variable("windowGapsIn", 10),
+            "general:gaps_out": read_hypr_variable("windowGapsOut", 20),
+            "general:gaps_workspaces": read_hypr_variable("workspaceGaps", 20),
+            "general:border_size": read_hypr_variable("windowBorderSize", 2),
+            "decoration:rounding": read_hypr_variable("windowRounding", 8),
+            "decoration:shadow:enabled": read_hypr_variable("shadowEnabled", "true"),
+            "decoration:blur:enabled": read_hypr_variable("blurEnabled", "true"),
+            "animations:enabled": "true",
+        }
+
+    for option, value in values.items():
+        hypr_keyword(option, value)
 
 
 def ensure_hypr_source():
@@ -101,14 +145,9 @@ windowrulev3 = gapsout 0, class:.*
     run(["fish", "-c", "set -Ux fish_color_scheme Snowman"])
 
     run_sync([str(KILL_SHELL)])
+    apply_hypr_runtime_mode(True)
     run(["waybar", "-c", str(WAYBAR_CONFIG), "-s", str(WAYBAR_STYLE)])
-    run_sync(
-        [
-            "hyprctl",
-            "batch",
-            "reload; notify-send 'Performance' 'ULTRA Mode Enabled' -t 1000",
-        ]
-    )
+    run(["notify-send", "Performance", "ULTRA Mode Enabled", "-t", "1000"])
 
 
 def disable_ultra():
@@ -142,14 +181,9 @@ $singleWindowGapsIn = 5
     run(["fish", "-c", "set -Ux fish_color_scheme Dracula"])
 
     run_sync(["killall", "waybar"])
+    apply_hypr_runtime_mode(False)
     run([str(RESTART_SHELL)])
-    run_sync(
-        [
-            "hyprctl",
-            "batch",
-            "reload; notify-send 'Performance' 'Normal Mode Restored' -t 1000",
-        ]
-    )
+    run(["notify-send", "Performance", "Normal Mode Restored", "-t", "1000"])
 
 
 if __name__ == "__main__":

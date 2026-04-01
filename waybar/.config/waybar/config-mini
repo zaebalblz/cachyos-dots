@@ -17,7 +17,7 @@
         }
     },
     "clock": {
-        "format": "{:%H:%M}",
+        "format": "{:%I:%M %p}",
         "tooltip-format": "<big>{:%A, %d %B %Y}</big>
 <tt><small>{calendar}</small></tt>"
     },

@@ -59,17 +59,7 @@ end
    alias pipe 'pipes.sh'
    alias ttyc 'tty-clock -s -t -c -D'
    alias vimn 'nix run github:onelocked/vimmax/f6b0284d888ffd443195eb817fe1ce19fea30144'
-   
-   alias debian="docker start -ai debian"
-   alias ubuntu="docker start -ai ubuntu"
-   alias arch="docker start -ai arch"
-   alias gentoo="docker start -ai gentoo"
-   alias fedora="docker start -ai fedora"
-   alias opensuse="docker start -ai opensuse"
-   alias alpine="docker start -ai alpine"
-   alias rocky="docker start -ai rocky"
-   alias alma="docker start -ai alma"
-   alias kali="docker start -ai kali"
+   alias ksteam 'kill -9 steam'   
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /home/linuxoed/.lmstudio/bin
