@@ -834,6 +834,7 @@
         "enabled": true,
         "favorites": [
             {
+                "appearance": "dark",
                 "colorScheme": "Ayu",
                 "darkMode": true,
                 "generationMethod": "faithful",

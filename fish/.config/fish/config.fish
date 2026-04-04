@@ -31,6 +31,11 @@ if status is-interactive
     abbr ll 'ls -l'
     abbr la 'ls -a'
     abbr lla 'ls -la'
+    abbr hs '~/Документы/scripts/hydra_saves.sh'
+    abbr hss '~/Документы/scripts/hydra_saves.sh status'
+    abbr hsb '~/Документы/scripts/hydra_saves.sh backup'
+    abbr hsl '~/Документы/scripts/hydra_saves.sh list'
+    abbr hsr '~/Документы/scripts/hydra_saves.sh restore'
 
 
 
@@ -59,9 +64,10 @@ end
    alias pipe 'pipes.sh'
    alias ttyc 'tty-clock -s -t -c -D'
    alias vimn 'nix run github:onelocked/vimmax/f6b0284d888ffd443195eb817fe1ce19fea30144'
-   alias ksteam 'kill -9 steam'   
+   alias ksteam 'kill -9 steam'
+   alias run-nsfw-ai 'ollama run nsfw-games'
+   alias stop-nsfw-ai 'ollama stop nsfw-games'
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /home/linuxoed/.lmstudio/bin
 # End of LM Studio CLI section
-
