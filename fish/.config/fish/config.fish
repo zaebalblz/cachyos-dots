@@ -67,6 +67,7 @@ end
    alias ksteam 'kill -9 steam'
    alias run-nsfw-ai 'ollama run nsfw-games'
    alias stop-nsfw-ai 'ollama stop nsfw-games'
+   alias piano '/home/linuxoed/.local/bin/piano'
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /home/linuxoed/.lmstudio/bin
