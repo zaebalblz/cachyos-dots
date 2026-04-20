@@ -36,15 +36,42 @@ if status is-interactive
     abbr hsb '~/Документы/scripts/hydra_saves.sh backup'
     abbr hsl '~/Документы/scripts/hydra_saves.sh list'
     abbr hsr '~/Документы/scripts/hydra_saves.sh restore'
-
-
-
     # Custom colours
 #    cat ~/.local/state/caelestia/sequences.txt 2> /dev/null
 
     # For jumping between prompts in foot terminal
     function mark_prompt_start --on-event fish_prompt
         echo -en "\e]133;A\e\\"
+    end
+
+    function ms --description 'Minecraft server control'
+        set -l server_dir ~/servers/mc-1.21.11
+
+        switch "$argv[1]"
+            case '' help
+                echo 'ms start      - запустить сервер и playit'
+                echo 'ms stop       - остановить сервер и playit'
+                echo 'ms restart    - перезапустить сервер и playit'
+                echo 'ms status     - показать статус'
+                echo 'ms logs       - показать лог Minecraft'
+                echo 'ms playit     - показать лог playit'
+                echo 'ms addr       - показать публичный адрес'
+                echo 'ms cd         - перейти в каталог сервера'
+                echo 'ms enable     - включить автозапуск после входа'
+                echo 'ms disable    - отключить автозапуск после входа'
+            case start stop restart status logs enable disable
+                cd $server_dir && ./mcctl $argv[1]
+            case playit
+                cd $server_dir && ./mcctl logs-playit
+            case addr address ip
+                echo greater-ladies.gl.joinmc.link
+            case cd dir
+                cd $server_dir
+            case '*'
+                echo "Неизвестная команда: $argv[1]"
+                echo "Используйте: ms help"
+                return 1
+        end
     end
 end
 
@@ -68,6 +95,8 @@ end
    alias run-nsfw-ai 'ollama run nsfw-games'
    alias stop-nsfw-ai 'ollama stop nsfw-games'
    alias piano '/home/linuxoed/.local/bin/piano'
+   alias mcctl '~/servers/mc-1.21.11/mcctl'
+   alias board 'cd /home/linuxoed/investigation-board && npm run dev -- --open'
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /home/linuxoed/.lmstudio/bin
