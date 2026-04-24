@@ -901,6 +901,20 @@
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/wallhaven-3q3j6y_3840x2160.png",
                 "useWallpaperColors": true
+            },
+            {
+                "appearance": "dark",
+                "colorScheme": "Ayu",
+                "darkMode": true,
+                "generationMethod": "monochrome",
+                "paletteColors": [
+                    "#ffffff",
+                    "#c6c6c6",
+                    "#e2e2e2",
+                    "#ffb4ab"
+                ],
+                "path": "/home/linuxoed/Pictures/Wallpapers/OIP-1469934085.jpg",
+                "useWallpaperColors": true
             }
         ],
         "fillColor": "#000000",

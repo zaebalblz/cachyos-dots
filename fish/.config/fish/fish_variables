@@ -2,6 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:code
 SETUVAR __fish_initialized:4300
+SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR --export fish_color_scheme:Dracula
 SETUVAR fish_user_paths:/home/linuxoed/\x2elocal/bin
 SETUVAR pure_begin_prompt_with_current_directory:true
