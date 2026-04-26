@@ -868,12 +868,12 @@
                 "appearance": "dark",
                 "colorScheme": "Ayu",
                 "darkMode": true,
-                "generationMethod": "faithful",
+                "generationMethod": "monochrome",
                 "paletteColors": [
-                    "#52f9de",
-                    "#39b9f9",
-                    "#3959f9",
-                    "#fd4663"
+                    "#ffffff",
+                    "#c6c6c6",
+                    "#e2e2e2",
+                    "#ffb4ab"
                 ],
                 "path": "/home/linuxoed/Pictures/Wallpapers/117497448_p0.jpg",
                 "useWallpaperColors": true
